@@ -129,7 +129,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628089025}
-  - component: {fileID: 628089024}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -137,20 +136,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &628089024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628089023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d89d495b8252554980176a887021340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2111146082}
-  enemy: {fileID: 696412341}
 --- !u!4 &628089025
 Transform:
   m_ObjectHideFlags: 0
@@ -178,7 +163,6 @@ GameObject:
   - component: {fileID: 696412340}
   - component: {fileID: 696412339}
   - component: {fileID: 696412338}
-  - component: {fileID: 696412341}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -272,22 +256,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696412336}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &696412341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696412336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f0482d634b6f94f96be56db8d4f5ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 5ecbdc347d79dce48a6b566db60037a7, type: 2}
-  currentHealth: 0
-  rend: {fileID: 696412339}
-  activeEffects: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +454,6 @@ GameObject:
   - component: {fileID: 2111146081}
   - component: {fileID: 2111146080}
   - component: {fileID: 2111146079}
-  - component: {fileID: 2111146082}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -580,19 +547,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111146077}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2111146082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111146077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f0482d634b6f94f96be56db8d4f5ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 499c2ef2a4391e1438bbd0da3d7dfede, type: 2}
-  currentHealth: 0
-  rend: {fileID: 2111146080}
-  activeEffects: []
