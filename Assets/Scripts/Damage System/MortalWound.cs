@@ -2,13 +2,13 @@
 public class MortalWound
 {
     public string description;
-    public int attributePenalty;
-    public bool isPermanent;
+    public int effectValue;
+    public bool immediateEffect;
 
-    public MortalWound(string description, int attributePenalty, bool isPermanent)
+    public MortalWound(string description, int effectValue, bool immediateEffect)
     {
         this.description = description;
-        this.attributePenalty = attributePenalty;
-        this.isPermanent = isPermanent;
+        this.effectValue = effectValue;
+        this.immediateEffect = immediateEffect;
     }
 }
