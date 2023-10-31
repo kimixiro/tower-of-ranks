@@ -35,45 +35,10 @@ public class TurnManager : MonoBehaviour
 
     void ExecuteTurn(Unit unit, Unit target)
     {
-        unit.CheckForConditionEffects();
-        target.CheckForConditionEffects();
-        unit.CheckForStressEffects();
-        target.CheckForStressEffects();
-        unit.CheckForEnvironmentalEffects(currentEnvironment);
-        target.CheckForEnvironmentalEffects(currentEnvironment);
         
-        int unitAttackBonus = unit.CalculateTotalAttackBonus();
-        int targetDefenseBonus = target.CalculateTotalDefenseBonus();
-        
-        unit.CheckMoraleEffects();
-        target.CheckMoraleEffects();
-        
-        startPhase.Execute(unit, target);
-        mainActionPhase.Execute(unit, target);
-        endPhase.Execute(unit, target);
-
-        // Check for injuries to body parts
-        unit.CheckForInjuries();
-        target.CheckForInjuries();
-        
-        // Execute special ability (for demonstration, let's assume the unit uses the first ability in its list)
-        if (unit.config.abilities.Count > 0)
-        {
-            Ability ability = unit.config.abilities[0];
-            unit.UseAbility(ability, target);
-        }
-        
-        unit.UpdateStatusEffects();
-        target.UpdateStatusEffects();
-
-        // Roll for critical hit (20% chance)
-        float roll = UnityEngine.Random.Range(0f, 1f);
-        if (roll <= 0.2f)
-        {
-            // Apply a sample critical hit
-            CriticalHit crit = new CriticalHit(10, BodyPart.State.Bleeding);
-            target.ApplyCriticalHitToBodyPart("Head", crit);
-        }
+        startPhase.Execute(unit, target, currentEnvironment);
+        mainActionPhase.Execute(unit, target, currentEnvironment);
+        endPhase.Execute(unit, target, currentEnvironment);
     }
     Unit ChooseRandomEnemy()
     {

@@ -1,10 +1,12 @@
-using UnityEngine;
-
 public class StartPhase : ITurnPhase
 {
-    public void Execute(Unit  unit, Unit  target)
+    public void Execute(Unit unit, Unit target, Environment currentEnvironment)
     {
-        // Logic for the start of the turn
-        Debug.Log(unit.name + " Start Phase");
+        unit.CheckForConditionEffects();
+        target.CheckForConditionEffects();
+        unit.CheckForEnvironmentalEffects(currentEnvironment);
+        target.CheckForEnvironmentalEffects(currentEnvironment);
+        unit.CheckMoraleEffects();
+        target.CheckMoraleEffects();
     }
 }
