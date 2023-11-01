@@ -4,12 +4,13 @@ public class Unit : MonoBehaviour, IUnit
 {
     [SerializeField] internal UnitConfig config;
 
-    private DamageHandler damageHandler;
-    private EquipmentManager equipmentManager;
-    private ConditionManager conditionManager;
-    private MentalStateManager mentalStateManager;
-    private AbilityManager abilityManager;
-    private EnvironmentManager environmentManager;
+    public DamageHandler damageHandler;
+    public EquipmentManager equipmentManager;
+    public ConditionManager conditionManager;
+    public MentalStateManager mentalStateManager;
+    public AbilityManager abilityManager;
+    public EnvironmentManager environmentManager;
+    public StatusEffectManager statusEffectManager;
     
     public UnitConfig Config
     {

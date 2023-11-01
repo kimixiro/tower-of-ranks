@@ -4,8 +4,8 @@ public class EndPhase : ITurnPhase
 {
     public void Execute(Unit unit, Unit target, Environment currentEnvironment)
     {
-        unit.UpdateStatusEffects();
-        target.UpdateStatusEffects();
+        unit.statusEffectManager.UpdateStatusEffects();
+        target.statusEffectManager.UpdateStatusEffects();
         unit.CheckForInjuries();
         target.CheckForInjuries();
         if (DiceRoller.RollFloat() <= 0.2f)
