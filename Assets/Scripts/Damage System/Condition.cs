@@ -1,7 +1,4 @@
-public enum Condition
+public class Condition
 {
-    None,
-    Stunned,
-    Prone,
-    Incapacitated
+    
 }

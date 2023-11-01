@@ -1,8 +1,4 @@
-public enum Environment
+public class Environment
 {
-    Clear,
-    Rainy,
-    Snowy,
-    Foggy,
-    Night
+    public EnvironmentType type;
 }
