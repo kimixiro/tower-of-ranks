@@ -6,12 +6,13 @@ public class EndPhase : ITurnPhase
     {
         unit.statusEffectManager.UpdateStatusEffects();
         target.statusEffectManager.UpdateStatusEffects();
-        unit.CheckForInjuries();
-        target.CheckForInjuries();
+        unit.damageHandler.CheckForInjuries();
+        target.damageHandler.CheckForInjuries();
+
         if (DiceRoller.RollFloat() <= 0.2f)
         {
             CriticalHit crit = new CriticalHit(10, BodyPart.State.Bleeding);
-            target.ApplyCriticalHitToBodyPart("Head", crit);
+            unit.damageHandler.ApplyCriticalHitToBodyPart();
         }
     }
 }
