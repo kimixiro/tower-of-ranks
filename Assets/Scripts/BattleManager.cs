@@ -66,13 +66,13 @@ public class BattleManager : MonoBehaviour
 
     private void ApplyStatusEffects(Character character)
     {
-        foreach (var effect in character.StatusEffects.ToList())
+        foreach (var effect in character.statusEffects.ToList())
         {
             effect.Apply(character);
-            effect.Duration--;
+            effect.duration--;
 
             // Remove effect if duration has expired
-            if (effect.Duration <= 0)
+            if (effect.duration <= 0)
             {
                 effect.Remove(character);
             }

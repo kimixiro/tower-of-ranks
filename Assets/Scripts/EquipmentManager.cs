@@ -6,7 +6,7 @@ public class EquipmentManager : MonoBehaviour
     public void EquipItem(Character character, Equipment equipment)
     {
         // Check if the item is not already equipped
-        if (!character.Equipments.Contains(equipment))
+        if (!character.equipments.Contains(equipment))
         {
             // Equip the item
             equipment.Equip(character);
@@ -18,7 +18,7 @@ public class EquipmentManager : MonoBehaviour
     public void UnequipItem(Character character, Equipment equipment)
     {
         // Check if the item is currently equipped
-        if (character.Equipments.Contains(equipment))
+        if (character.equipments.Contains(equipment))
         {
             // Unequip the item
             equipment.Unequip(character);
