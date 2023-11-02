@@ -12,3 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8379a4822c6ee80438bbd726cc28ddb1, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
+  Name: Goblin
+  PrimaryAttributes:
+  - name: Strength
+    value: 6
+    modifier: 0
+  - name: Agility
+    value: 12
+    modifier: 0
+  - name: Intelligence
+    value: 5
+    modifier: 0
+  SecondaryAttributes:
+  - name: Health
+    value: 80
+    modifier: 0
+  - name: Stamina
+    value: 30
+    modifier: 0
+  - name: Mana
+    value: 30
+    modifier: 0
+  Profession: Thief

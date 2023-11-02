@@ -12,3 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8379a4822c6ee80438bbd726cc28ddb1, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
+  Name: Hero
+  PrimaryAttributes:
+  - name: Strength
+    value: 10
+    modifier: 0
+  - name: Agility
+    value: 8
+    modifier: 0
+  - name: Intelligence
+    value: 5
+    modifier: 0
+  SecondaryAttributes:
+  - name: Health
+    value: 100
+    modifier: 0
+  - name: Stamina
+    value: 50
+    modifier: 0
+  - name: Mana
+    value: 50
+    modifier: 0
+  Profession: Warrior
