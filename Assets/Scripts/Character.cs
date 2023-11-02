@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using Random = System.Random;
 
-public class Character
+public class Character : MonoBehaviour
 {
     public string Name { get; set; }
     public List<Attribute> PrimaryAttributes { get; set; }

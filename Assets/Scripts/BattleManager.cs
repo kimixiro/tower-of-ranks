@@ -1,8 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using Random = System.Random;
 
-public class BattleManager
+public class BattleManager : MonoBehaviour
 {
     private List<Character> combatants;
     private int currentTurnIndex;

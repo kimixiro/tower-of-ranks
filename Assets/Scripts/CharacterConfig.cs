@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-[System.Serializable]
-public class CharacterConfig
+[CreateAssetMenu(fileName = "NewCharacterConfig", menuName = "Character Config", order = 0)]
+public class CharacterConfig : ScriptableObject
 {
     public string Name { get; set; }
     public List<Attribute> PrimaryAttributes { get; set; }
