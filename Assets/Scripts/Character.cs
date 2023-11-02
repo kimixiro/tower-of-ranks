@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
 {
+    public CharacterConfig config;
     public string characterName;
     public List<Attribute> primaryAttributes;
     public List<Attribute> secondaryAttributes;
@@ -14,7 +15,20 @@ public class Character : MonoBehaviour
     public List<Equipment> equipments;
     public List<BodyPart> bodyParts;
 
-    // Removed constructor in favor of Unity's serialization system
+    public void Initialize(CharacterConfig config)
+    {
+        characterName = config.Name;
+        primaryAttributes = new List<Attribute>(config.PrimaryAttributes);
+        secondaryAttributes = new List<Attribute>(config.SecondaryAttributes);
+        profession = config.Profession;
+
+        // Additional initialization based on the CharacterConfig can be done here
+    }
+
+    private void Start()
+    {
+        Initialize(config);
+    }
 
     // Attack method: Character attempts to hit another character
     public void Attack(Character target)
