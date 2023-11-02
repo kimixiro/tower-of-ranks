@@ -1,4 +1,6 @@
-public class EquipmentManager
+using UnityEngine;
+
+public class EquipmentManager : MonoBehaviour
 {
     // EquipItem method: Handles the logic of equipping an item to a character
     public void EquipItem(Character character, Equipment equipment)

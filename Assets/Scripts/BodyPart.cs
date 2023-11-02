@@ -8,7 +8,7 @@ public class BodyPart
     public int damageThreshold;
     public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
-    // Removed constructor and replaced with Unity's serialization system
+    // Unity's serialization system is used, so constructors are not needed
 
     public void TakeDamage(int damage)
     {
@@ -17,7 +17,14 @@ public class BodyPart
         {
             // Apply a status effect based on the type of damage and body part
             // For example, a severe cut might apply a bleeding effect
-            StatusEffect severeInjury = new StatusEffect("Severe Injury", 3, "Bleeding", damage);
+            StatusEffect severeInjury = new StatusEffect
+            {
+                name = "Severe Injury",
+                duration = 3,
+                effectType = "Bleeding",
+                potency = damage
+                // affectedAttributes should be assigned if needed
+            };
             ApplyStatusEffect(severeInjury);
         }
 
