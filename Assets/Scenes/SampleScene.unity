@@ -129,7 +129,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628089025}
-  - component: {fileID: 628089026}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -152,21 +151,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &628089026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628089023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d9f539e18bf27b4690b917ccb152596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combatants:
-  - {fileID: 2111146082}
-  - {fileID: 696412341}
 --- !u!1 &696412336
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +163,6 @@ GameObject:
   - component: {fileID: 696412340}
   - component: {fileID: 696412339}
   - component: {fileID: 696412338}
-  - component: {fileID: 696412341}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -273,26 +256,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696412336}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &696412341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696412336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e585e778967dc4290dd832baef38c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: c210b45652f035a4ba737af8171ec800, type: 2}
-  characterName: 
-  primaryAttributes: []
-  secondaryAttributes: []
-  profession: 
-  statusEffects: []
-  equipments: []
-  bodyParts: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +451,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1533812025}
-  - component: {fileID: 1533812024}
   m_Layer: 0
   m_Name: EquipmentManager
   m_TagString: Untagged
@@ -496,18 +458,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1533812024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533812023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef150c21e716c24e9cb385cf6b94bb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1533812025
 Transform:
   m_ObjectHideFlags: 0
@@ -535,7 +485,6 @@ GameObject:
   - component: {fileID: 2111146081}
   - component: {fileID: 2111146080}
   - component: {fileID: 2111146079}
-  - component: {fileID: 2111146082}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -629,23 +578,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111146077}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2111146082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111146077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e585e778967dc4290dd832baef38c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 4fa2f266b7c752a44a964c11d5b6c516, type: 2}
-  characterName: 
-  primaryAttributes: []
-  secondaryAttributes: []
-  profession: 
-  statusEffects: []
-  equipments: []
-  bodyParts: []
