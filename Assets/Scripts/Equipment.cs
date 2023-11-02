@@ -1,57 +1,53 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
+[System.Serializable]
 public class Equipment
 {
-    public string Name { get; set; }
-    public string Type { get; set; }
-    public List<Attribute> AttributeBonuses { get; set; }
+    public string name;
+    public string type;
+    public List<Attribute> attributeBonuses;
 
-    public Equipment(string name, string type, List<Attribute> attributeBonuses)
-    {
-        Name = name;
-        Type = type;
-        AttributeBonuses = attributeBonuses;
-    }
+    // Removed constructor in favor of Unity's serialization system
 
     // Equip method: Equips the item to the character
     public void Equip(Character character)
     {
         // Add the equipment to the character's equipment list
-        character.Equipments.Add(this);
+        character.equipments.Add(this);
 
         // Apply the attribute bonuses to the character
-        foreach (var bonus in AttributeBonuses)
+        foreach (var bonus in attributeBonuses)
         {
-            var targetAttribute = character.PrimaryAttributes
-                .Concat(character.SecondaryAttributes)
-                .FirstOrDefault(attr => attr.Name == bonus.Name);
+            var targetAttribute = character.primaryAttributes
+                .Concat(character.secondaryAttributes)
+                .FirstOrDefault(attr => attr.name == bonus.name);
 
             if (targetAttribute != null)
             {
-                targetAttribute.Value += bonus.Value;
+                targetAttribute.value += bonus.value;
             }
         }
     }
 
-// Unequip method: Unequips the item from the character
+    // Unequip method: Unequips the item from the character
     public void Unequip(Character character)
     {
         // Remove the equipment from the character's equipment list
-        character.Equipments.Remove(this);
+        character.equipments.Remove(this);
 
         // Remove the attribute bonuses from the character
-        foreach (var bonus in AttributeBonuses)
+        foreach (var bonus in attributeBonuses)
         {
-            var targetAttribute = character.PrimaryAttributes
-                .Concat(character.SecondaryAttributes)
-                .FirstOrDefault(attr => attr.Name == bonus.Name);
+            var targetAttribute = character.primaryAttributes
+                .Concat(character.secondaryAttributes)
+                .FirstOrDefault(attr => attr.name == bonus.name);
 
             if (targetAttribute != null)
             {
-                targetAttribute.Value -= bonus.Value;
+                targetAttribute.value -= bonus.value;
             }
         }
     }
-    
 }

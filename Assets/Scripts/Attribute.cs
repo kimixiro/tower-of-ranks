@@ -1,13 +1,12 @@
+using UnityEngine;
+
+[System.Serializable] // This makes the class visible in the Unity inspector
 public class Attribute
 {
-    public string Name { get; set; }
-    public int Value { get; set; }
-    public int Modifier { get; set; }
+    public string name;
+    public int value;
+    public int modifier;
 
-    public Attribute(string name, int value, int modifier)
-    {
-        Name = name;
-        Value = value;
-        Modifier = modifier;
-    }
+    // Constructors are not typically used in Unity for serialized classes
+    // Unity will handle the instantiation and setup through the inspector
 }

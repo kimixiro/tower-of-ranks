@@ -2,30 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
 {
-    public string Name { get; set; }
-    public List<Attribute> PrimaryAttributes { get; set; }
-    public List<Attribute> SecondaryAttributes { get; set; }
-    public string Profession { get; set; }
-    public List<StatusEffect> StatusEffects { get; set; }
-    public List<Equipment> Equipments { get; set; }
-    public List<BodyPart> BodyParts { get; set; }
+    public string characterName;
+    public List<Attribute> primaryAttributes;
+    public List<Attribute> secondaryAttributes;
+    public string profession;
+    public List<StatusEffect> statusEffects;
+    public List<Equipment> equipments;
+    public List<BodyPart> bodyParts;
 
-    public Character(CharacterConfig config)
-    {
-        Name = config.Name;
-        PrimaryAttributes = config.PrimaryAttributes;
-        SecondaryAttributes = config.SecondaryAttributes;
-        Profession = config.Profession;
-        StatusEffects = new List<StatusEffect>();
-        Equipments = new List<Equipment>();
-        BodyParts = new List<BodyPart>();
-    }
+    // Removed constructor in favor of Unity's serialization system
 
-// Attack method: Character attempts to hit another character
+    // Attack method: Character attempts to hit another character
     public void Attack(Character target)
     {
         // For simplicity, we'll just select a random body part to attack and use a base damage value
@@ -39,12 +30,13 @@ public class Character : MonoBehaviour
         targetedBodyPart.TakeDamage(damage);
     }
 
-
+    // Defend method: Implementation of defend logic
     public void Defend()
     {
         // Implementation of defend logic
     }
 
+    // ApplyStatusEffect method: Implementation of applying a status effect
     public void ApplyStatusEffect(StatusEffect effect)
     {
         // Implementation of applying a status effect
@@ -54,7 +46,7 @@ public class Character : MonoBehaviour
     public int CalculateDamage(int baseDamage, BodyPart targetPart)
     {
         // Check for any damage modifiers based on body part or character's attributes
-        int damageModifier = targetPart.DamageThreshold; // Simplified example, would be more complex with actual game mechanics
+        int damageModifier = targetPart.damageThreshold; // Simplified example, would be more complex with actual game mechanics
 
         // Calculate final damage
         int finalDamage = baseDamage - damageModifier;
@@ -66,14 +58,14 @@ public class Character : MonoBehaviour
     // SelectRandomBodyPart method: Selects a random body part from the character's body parts
     public BodyPart SelectRandomBodyPart()
     {
-        Random rnd = new Random();
-        int index = rnd.Next(BodyParts.Count);
-        return BodyParts[index];
+        int index = Random.Range(0, bodyParts.Count);
+        return bodyParts[index];
     }
 
+    // IsDefeated method: Check if all body parts are defeated
     public bool IsDefeated()
     {
         // Check if all body parts are defeated
-        return BodyParts.All(part => part.DamageThreshold <= 0);
+        return bodyParts.All(part => part.damageThreshold <= 0);
     }
 }

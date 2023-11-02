@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Random = System.Random;
 
 public class BattleManager : MonoBehaviour
 {
+    [SerializeField]
     private List<Character> combatants;
     private int currentTurnIndex;
 
-    public BattleManager(List<Character> combatants)
+    // Constructor is not used in Unity, instead, we use Awake or Start for initialization
+    void Start()
     {
-        this.combatants = combatants;
+        // Initialize combatants list and currentTurnIndex here if needed
+        // For example, you could find all characters in the scene or set them through the inspector
         currentTurnIndex = 0;
     }
 
@@ -57,8 +59,7 @@ public class BattleManager : MonoBehaviour
         var potentialTargets = combatants.Where(c => c != attacker && !c.IsDefeated()).ToList();
         if (potentialTargets.Any())
         {
-            Random rnd = new Random();
-            return potentialTargets[rnd.Next(potentialTargets.Count)];
+            return potentialTargets[Random.Range(0, potentialTargets.Count)];
         }
         return null;
     }
