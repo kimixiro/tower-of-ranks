@@ -13,14 +13,14 @@ public static class DiceRoller
     }
 
     // Roll for a check between two characters
-    public static bool RollCheck(Unit unit1, Unit unit2, float threshold)
+    public static bool RollCheck(Character unit1, Character unit2, float threshold)
     {
         float roll = RollFloat();
         return roll <= threshold;
     }
 
     // Roll for a self-check for a single character
-    public static bool RollSelfCheck(Unit unit, float threshold)
+    public static bool RollSelfCheck(Character unit, float threshold)
     {
         float roll = RollFloat();
         return roll <= threshold;
