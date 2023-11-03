@@ -28,6 +28,7 @@ public class Character : MonoBehaviour {
         ActiveGlobalEffects = new List<StatusEffect>();
         currentHealth = maxHealth;
         InitializeBodyParts();
+        CalculateDerivedStats();
     }
 
     private void InitializeBodyParts() {
