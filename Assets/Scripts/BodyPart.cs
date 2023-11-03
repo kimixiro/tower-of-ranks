@@ -7,22 +7,47 @@ public enum BodyPartType { Head, Torso, ArmL, ArmR, LegL, LegR }
 public class BodyPart : MonoBehaviour {
     public BodyPartType type;
     public int maxHealth;
-    private int currentHealth;
+    public int currentHealth;
     public List<StatusEffect> localizedEffects;
+    private Renderer bodyPartRenderer;
 
     public delegate void EffectAppliedHandler(StatusEffect effect);
     public event EffectAppliedHandler OnEffectApplied;
 
     private void Awake() {
         localizedEffects = new List<StatusEffect>();
-        currentHealth = maxHealth;
+        bodyPartRenderer = GetComponent<Renderer>();
+        UpdateRenderingState();
+    }
+    
+    public void InitializeHealth(int health) {
+        maxHealth = health;
+        currentHealth = health;
+        UpdateRenderingState();
     }
     
     public void TakeDamage(int damage) {
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
         if (currentHealth <= 0) {
-            // Handle the body part being incapacitated
+            DisableBodyPart();
+        } else {
+            UpdateRenderingState(); // Ensure the body part is rendered if health is above zero
+        }
+    }
+    
+    private void DisableBodyPart() {
+        // Disable rendering of the body part
+        if (bodyPartRenderer != null) {
+            bodyPartRenderer.enabled = false;
+        }
+        Debug.Log($"{type} has been disabled.");
+    }
+
+    private void UpdateRenderingState() {
+        // Enable or disable rendering based on current health
+        if (bodyPartRenderer != null) {
+            bodyPartRenderer.enabled = currentHealth > 0;
         }
     }
 

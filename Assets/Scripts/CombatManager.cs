@@ -10,7 +10,7 @@ public class CombatManager : MonoBehaviour {
     }
 
     private IEnumerator CombatRoutine() {
-        while (player.CurrentHealth > 0 && enemy.CurrentHealth > 0) {
+        while (player.TotalHealth > 0 && enemy.TotalHealth > 0) {
             PerformAttack(player, enemy);
             PerformAttack(enemy, player);
             yield return new WaitForSeconds(1f); // Wait 1 second between rounds
@@ -40,11 +40,14 @@ public class CombatManager : MonoBehaviour {
 
 
     private void ApplyRandomEffect(BodyPart bodyPart, Character character) {
-        // Select a random effect from the character's available effects
-        StatusEffect randomEffect = character.availableEffects[Random.Range(0, character.availableEffects.Count)];
-        bodyPart.ApplyEffect(randomEffect);
+        if (character.availableEffects.Count > 0) {
+            StatusEffect randomEffect = character.availableEffects[Random.Range(0, character.availableEffects.Count)];
+            bodyPart.ApplyEffect(randomEffect);
+        } else {
+            Debug.LogWarning("No available effects to apply.");
+        }
     }
-
+    
     private void ApplyRandomEffectToCharacter(Character character) {
         // Select a random effect from the character's available effects
         StatusEffect randomEffect = character.availableEffects[Random.Range(0, character.availableEffects.Count)];
