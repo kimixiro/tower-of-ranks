@@ -6,8 +6,10 @@ public enum BodyPartType { Head, Torso, ArmL, ArmR, LegL, LegR }
 
 public class BodyPart : MonoBehaviour {
     public BodyPartType type;
+    public bool isVital;
     public int maxHealth;
     public int currentHealth;
+    public float healthCoefficient = 1.0f; // Default coefficient
     public List<StatusEffect> localizedEffects;
     private Renderer bodyPartRenderer;
 
@@ -20,9 +22,9 @@ public class BodyPart : MonoBehaviour {
         UpdateRenderingState();
     }
     
-    public void InitializeHealth(int health) {
-        maxHealth = health;
-        currentHealth = health;
+    public void InitializeHealth(int baseHealth) {
+        maxHealth = Mathf.CeilToInt(baseHealth * healthCoefficient);
+        currentHealth = maxHealth;
         UpdateRenderingState();
     }
     
@@ -30,6 +32,10 @@ public class BodyPart : MonoBehaviour {
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
         if (currentHealth <= 0) {
+            if (isVital) {
+                // Notify the character that a vital body part has been incapacitated
+                SendMessageUpwards("HandleVitalPartIncapacitated", this, SendMessageOptions.DontRequireReceiver);
+            }
             DisableBodyPart();
         } else {
             UpdateRenderingState(); // Ensure the body part is rendered if health is above zero

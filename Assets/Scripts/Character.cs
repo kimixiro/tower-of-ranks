@@ -25,11 +25,10 @@ public class Character : MonoBehaviour {
     }
 
     private void InitializeBodyParts() {
-        // Initialize body parts based on the character's GameObject structure
-        // For example, find all BodyPart components attached to this character
         BodyPart[] parts = GetComponentsInChildren<BodyPart>();
         foreach (var part in parts) {
-            part.InitializeHealth(attributes.Body * 10);
+            int baseHealth = attributes.Body * 10; // Or any other logic you use to determine base health
+            part.InitializeHealth(baseHealth);
             BodyParts.Add(part.type, part);
         }
     }
@@ -95,6 +94,13 @@ public class Character : MonoBehaviour {
     
     public void InvokeOnGlobalEffectApplied(StatusEffect effect) {
         OnGlobalEffectApplied?.Invoke(effect);
+    }
+    
+    public void HandleVitalPartIncapacitated(BodyPart vitalPart) {
+        if (vitalPart.isVital) {
+            Debug.Log($"{gameObject.name}'s vital part {vitalPart.type} has been incapacitated. Character has died.");
+            HandleDeath();
+        }
     }
 
     // You can add more methods here as needed for gameplay, like healing, managing effects, etc.

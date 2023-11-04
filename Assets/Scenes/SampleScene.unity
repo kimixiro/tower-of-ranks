@@ -156,8 +156,8 @@ MonoBehaviour:
     Perception: 10
     Intelligence: 10
     Willpower: 10
-    Communication: 0
-  maxHealth: 0
+    Communication: 10
+  totalHealth: 0
   availableEffects: []
 --- !u!4 &252590879
 Transform:
@@ -217,7 +217,7 @@ MonoBehaviour:
     Intelligence: 10
     Willpower: 10
     Communication: 10
-  maxHealth: 0
+  totalHealth: 0
   availableEffects: []
 --- !u!4 &534644447
 Transform:
@@ -334,7 +334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &648265681
 BoxCollider:
@@ -455,7 +458,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  isVital: 1
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1.5
   localizedEffects: []
 --- !u!65 &672668064
 BoxCollider:
@@ -670,7 +676,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  isVital: 1
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 0.75
   localizedEffects: []
 --- !u!65 &760882121
 BoxCollider:
@@ -791,7 +800,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &803919905
 BoxCollider:
@@ -912,7 +924,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1.25
   localizedEffects: []
 --- !u!65 &839313459
 BoxCollider:
@@ -1125,7 +1140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  isVital: 1
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &989713488
 BoxCollider:
@@ -1246,7 +1264,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &1227141340
 BoxCollider:
@@ -1367,7 +1388,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &1371719659
 BoxCollider:
@@ -1488,7 +1512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  isVital: 1
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &1491367857
 BoxCollider:
@@ -1653,7 +1680,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &1681966950
 BoxCollider:
@@ -1774,7 +1804,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1.25
   localizedEffects: []
 --- !u!65 &1720522515
 BoxCollider:
@@ -1895,7 +1928,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
+  isVital: 0
   maxHealth: 0
+  currentHealth: 0
+  healthCoefficient: 1
   localizedEffects: []
 --- !u!65 &1813980072
 BoxCollider:
