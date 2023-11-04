@@ -4,6 +4,7 @@ using UnityEngine;
 public class CombatManager : MonoBehaviour {
     public Character player;
     public Character enemy;
+    public StatusEffectManager statusEffectManager;
 
     private void Start() {
         StartCoroutine(CombatRoutine());
@@ -28,7 +29,7 @@ public class CombatManager : MonoBehaviour {
             BodyPartType bodyPartType = (BodyPartType)Random.Range(0, System.Enum.GetValues(typeof(BodyPartType)).Length);
             BodyPart bodyPart = defender.BodyParts[bodyPartType];
             defender.TakeDamage(damage, bodyPartType);
-            ApplyRandomEffect(bodyPart, defender);
+            ApplyRandomEffect(defender); // Updated to pass only the defender
             Debug.Log($"{attacker.name} hit {defender.name}'s {bodyPartType} for {damage} damage.");
             StartCoroutine(bodyPart.Flash()); // Flash the body part
         } else {
@@ -38,19 +39,11 @@ public class CombatManager : MonoBehaviour {
         }
     }
 
-
-    private void ApplyRandomEffect(BodyPart bodyPart, Character character) {
-        if (character.availableEffects.Count > 0) {
-            StatusEffect randomEffect = character.availableEffects[Random.Range(0, character.availableEffects.Count)];
-            bodyPart.ApplyEffect(randomEffect);
-        } else {
-            Debug.LogWarning("No available effects to apply.");
-        }
-    }
-    
-    private void ApplyRandomEffectToCharacter(Character character) {
+    private void ApplyRandomEffect(Character character) {
         // Select a random effect from the character's available effects
         StatusEffect randomEffect = character.availableEffects[Random.Range(0, character.availableEffects.Count)];
-        character.ApplyGlobalEffect(randomEffect);
+        // Apply the effect using the existing ApplyEffect method
+        statusEffectManager.ApplyEffect(character, randomEffect);
     }
+
 }
