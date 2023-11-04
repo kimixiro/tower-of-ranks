@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class StatusEffectManager : MonoBehaviour
@@ -5,27 +6,34 @@ public class StatusEffectManager : MonoBehaviour
     // Apply an effect to a character or body part, depending on whether it's global or local
     public void ApplyEffect(Character character, StatusEffect effect)
     {
+        ActiveStatusEffect activeEffect = new ActiveStatusEffect(effect, effect.duration);
+
         if (effect.isGlobal)
         {
-            // Apply the global effect if it's not already active
-            if (!character.ActiveGlobalEffects.Contains(effect))
+            // Check if the character already has this global effect
+            if (!character.ActiveGlobalEffects.Any(ae => ae.effect == effect))
             {
-                character.ActiveGlobalEffects.Add(effect);
-                effect.ApplyEffect(character);
+                character.ActiveGlobalEffects.Add(activeEffect);
+                effect.ApplyEffect(character); // Apply the global effect to the character
             }
         }
         else
         {
-            // Apply the local effect to a random body part if it's not already active
-            BodyPartType bodyPartType = (BodyPartType)Random.Range(0, System.Enum.GetValues(typeof(BodyPartType)).Length);
-            BodyPart bodyPart = character.BodyParts[bodyPartType];
-            if (!bodyPart.localizedEffects.Contains(effect))
+            // Apply a local effect to each body part
+            foreach (var bodyPart in character.BodyParts.Values)
             {
-                bodyPart.localizedEffects.Add(effect);
-                effect.ApplyEffect(bodyPart);
+                // Check if the body part already has this local effect
+                if (!bodyPart.ActiveLocalizedEffects.Any(ae => ae.effect == effect))
+                {
+                    bodyPart.ActiveLocalizedEffects.Add(activeEffect);
+                    effect.ApplyEffect(bodyPart); // Apply the local effect to the body part
+                }
             }
         }
+        
+        Debug.Log($"Applied effect: {effect.name} to {character.name}");
     }
+
 
 
     // Update the status effects on the character
@@ -34,31 +42,38 @@ public class StatusEffectManager : MonoBehaviour
         // Update global effects
         for (int i = character.ActiveGlobalEffects.Count - 1; i >= 0; i--)
         {
-            var effect = character.ActiveGlobalEffects[i];
-            effect.ApplyEffect(character);
-            effect.duration -= Time.deltaTime; // Assuming duration is in seconds
-            if (effect.duration <= 0)
+            var activeEffect = character.ActiveGlobalEffects[i];
+            activeEffect.effect.ApplyEffect(character);
+            activeEffect.remainingDuration -= 1; // Decrement the duration by 1 turn
+
+            Debug.Log($"Updated global effect: {activeEffect.effect.name} on {character.name}. Remaining duration: {activeEffect.remainingDuration}");
+
+            if (activeEffect.remainingDuration <= 0)
             {
-                effect.RemoveEffect(character);
+                activeEffect.effect.RemoveEffect(character);
                 character.ActiveGlobalEffects.RemoveAt(i);
+                Debug.Log($"Removed global effect: {activeEffect.effect.name} from {character.name}");
             }
         }
 
         // Update localized effects for each body part
         foreach (var bodyPart in character.BodyParts.Values)
         {
-            for (int i = bodyPart.localizedEffects.Count - 1; i >= 0; i--)
+            for (int i = bodyPart.ActiveLocalizedEffects.Count - 1; i >= 0; i--)
             {
-                var effect = bodyPart.localizedEffects[i];
-                effect.ApplyEffect(bodyPart);
-                effect.duration -= Time.deltaTime; // Assuming duration is in seconds
-                if (effect.duration <= 0)
+                var activeEffect = bodyPart.ActiveLocalizedEffects[i];
+                activeEffect.effect.ApplyEffect(bodyPart);
+                activeEffect.remainingDuration -= 1; // Decrement the duration by 1 turn
+
+                Debug.Log($"Updated localized effect: {activeEffect.effect.name} on {bodyPart.type} of {character.name}. Remaining duration: {activeEffect.remainingDuration}");
+
+                if (activeEffect.remainingDuration <= 0)
                 {
-                    effect.RemoveEffect(bodyPart);
-                    bodyPart.localizedEffects.RemoveAt(i);
+                    activeEffect.effect.RemoveEffect(bodyPart);
+                    bodyPart.ActiveLocalizedEffects.RemoveAt(i);
+                    Debug.Log($"Removed localized effect: {activeEffect.effect.name} from {bodyPart.type} of {character.name}");
                 }
             }
         }
     }
-
 }

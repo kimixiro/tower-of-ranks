@@ -12,11 +12,33 @@ public class CombatManager : MonoBehaviour {
 
     private IEnumerator CombatRoutine() {
         while (player.TotalHealth > 0 && enemy.TotalHealth > 0) {
+            // Player's turn
             PerformAttack(player, enemy);
+            UpdateStatusEffects(player);
+            // Check for end of combat conditions
+            if (CheckForEndOfCombat()) yield break;
+        
+            yield return new WaitForSeconds(1f); // Wait for the turn to end
+
+            // Enemy's turn
             PerformAttack(enemy, player);
-            yield return new WaitForSeconds(1f); // Wait 1 second between rounds
+            UpdateStatusEffects(enemy);
+            // Check for end of combat conditions
+            if (CheckForEndOfCombat()) yield break;
+        
+            yield return new WaitForSeconds(1f); // Wait for the turn to end
         }
     }
+
+    private void UpdateStatusEffects(Character character) {
+        statusEffectManager.UpdateStatusEffects(character);
+    }
+
+    private bool CheckForEndOfCombat() {
+        // Implement logic to check if combat should end, e.g., one of the characters has been defeated
+        return player.TotalHealth <= 0 || enemy.TotalHealth <= 0;
+    }
+
 
     private void PerformAttack(Character attacker, Character defender) {
         // Determine damage

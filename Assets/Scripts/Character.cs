@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Character : MonoBehaviour {
     
     public CharacterAttributes attributes;
     public Dictionary<BodyPartType, BodyPart> BodyParts;
     [SerializeField] private int totalHealth;
-    public List<StatusEffect> ActiveGlobalEffects { get; private set; }
+    public List<ActiveStatusEffect> ActiveGlobalEffects { get; private set; }
+
     public List<StatusEffect> availableEffects;
 
     public delegate void GlobalEffectAppliedHandler(StatusEffect effect);
@@ -19,7 +21,7 @@ public class Character : MonoBehaviour {
 
     void Awake() {
         BodyParts = new Dictionary<BodyPartType, BodyPart>();
-        ActiveGlobalEffects = new List<StatusEffect>();
+        ActiveGlobalEffects = new List<ActiveStatusEffect>();
         InitializeBodyParts();
         UpdateTotalHealth();
     }
@@ -50,12 +52,13 @@ public class Character : MonoBehaviour {
     public void UpdateTotalHealth() {
         TotalHealth = CalculateTotalHealth();
     }
+    
     public void ApplyGlobalEffect(StatusEffect effect) {
-        if (!ActiveGlobalEffects.Contains(effect)) {
-            ActiveGlobalEffects.Add(effect);
+        ActiveStatusEffect activeEffect = new ActiveStatusEffect(effect, effect.duration);
+        if (!ActiveGlobalEffects.Any(ae => ae.effect == effect)) {
+            ActiveGlobalEffects.Add(activeEffect);
+            effect.ApplyEffect(this);
             OnGlobalEffectApplied?.Invoke(effect);
-            // Modify the effect based on attributes if necessary
-            ModifyEffectBasedOnAttributes(effect);
         }
     }
 

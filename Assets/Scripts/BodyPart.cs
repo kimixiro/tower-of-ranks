@@ -10,14 +10,14 @@ public class BodyPart : MonoBehaviour {
     public int maxHealth;
     public int currentHealth;
     public float healthCoefficient = 1.0f; // Default coefficient
-    public List<StatusEffect> localizedEffects;
+    public List<ActiveStatusEffect> ActiveLocalizedEffects { get; private set; }
     private Renderer bodyPartRenderer;
 
     public delegate void EffectAppliedHandler(StatusEffect effect);
     public event EffectAppliedHandler OnEffectApplied;
 
     private void Awake() {
-        localizedEffects = new List<StatusEffect>();
+        ActiveLocalizedEffects = new List<ActiveStatusEffect>();
         bodyPartRenderer = GetComponent<Renderer>();
         UpdateRenderingState();
     }
@@ -55,12 +55,6 @@ public class BodyPart : MonoBehaviour {
         if (bodyPartRenderer != null) {
             bodyPartRenderer.enabled = currentHealth > 0;
         }
-    }
-
-    public void ApplyEffect(StatusEffect effect) {
-        localizedEffects.Add(effect);
-        OnEffectApplied?.Invoke(effect);
-        // Handle the application of the effect, such as reducing health or mobility
     }
     
     public IEnumerator Flash() {
