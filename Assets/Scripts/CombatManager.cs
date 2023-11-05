@@ -17,7 +17,7 @@ public class CombatManager : MonoBehaviour {
             UpdateStatusEffects(player);
             // Check for end of combat conditions
             if (CheckForEndOfCombat()) yield break;
-        
+    
             yield return new WaitForSeconds(1f); // Wait for the turn to end
 
             // Enemy's turn
@@ -25,7 +25,7 @@ public class CombatManager : MonoBehaviour {
             UpdateStatusEffects(enemy);
             // Check for end of combat conditions
             if (CheckForEndOfCombat()) yield break;
-        
+    
             yield return new WaitForSeconds(1f); // Wait for the turn to end
         }
     }
@@ -35,8 +35,12 @@ public class CombatManager : MonoBehaviour {
     }
 
     private bool CheckForEndOfCombat() {
-        // Implement logic to check if combat should end, e.g., one of the characters has been defeated
-        return player.TotalHealth <= 0 || enemy.TotalHealth <= 0;
+        // Check if any character has died due to losing a vital body part
+        if (player.IsDead || enemy.IsDead) {
+            // Stop the combat if a character is dead
+            return true;
+        }
+        return false;
     }
 
 

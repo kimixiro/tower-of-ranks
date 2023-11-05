@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac7422a65ef4eb4a8dbb1a7bfb2edd5, type: 3}
   m_Name: Bleeding
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: Bleeding
   description: 
   icon: {fileID: 0}
-  duration: 0
+  duration: -10
   isGlobal: 0
-  damagePerTurn: 0
+  damagePerTurn: 1

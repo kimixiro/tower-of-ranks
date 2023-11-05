@@ -7,6 +7,7 @@ public class Character : MonoBehaviour {
     public CharacterAttributes attributes;
     public Dictionary<BodyPartType, BodyPart> BodyParts;
     [SerializeField] private int totalHealth;
+    public bool IsDead { get; private set; } = false;
     public List<ActiveStatusEffect> ActiveGlobalEffects { get; private set; }
 
     public List<StatusEffect> availableEffects;
@@ -70,18 +71,26 @@ public class Character : MonoBehaviour {
     public void TakeDamage(int damage, BodyPartType? bodyPartType = null) {
         if (bodyPartType.HasValue) {
             // Apply damage to a specific body part
-            BodyParts[bodyPartType.Value].TakeDamage(damage);
+            BodyPart affectedPart = BodyParts[bodyPartType.Value];
+            affectedPart.TakeDamage(damage);
+        
+            // Check if the affected body part is vital and has been incapacitated
+            if (affectedPart.currentHealth <= 0 && affectedPart.isVital) {
+                HandleVitalPartIncapacitated(affectedPart);
+                return; // Stop further execution since the character is dead
+            }
         } else {
             // Apply damage evenly across all body parts or to random body parts
             DistributeDamage(damage);
         }
 
+        // Update total health after applying damage
+        UpdateTotalHealth();
+    
         // Check if the character is still alive after taking damage
         if (TotalHealth <= 0) {
             HandleDeath();
         }
-        
-        UpdateTotalHealth();
     }
     
     private void DistributeDamage(int damage) {
@@ -92,6 +101,7 @@ public class Character : MonoBehaviour {
     private void HandleDeath() {
         // Handle the character's death
         Debug.Log($"{gameObject.name} has died.");
+        IsDead = true;
         // Disable the character, trigger death animation, etc.
     }
     
