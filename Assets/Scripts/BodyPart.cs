@@ -10,7 +10,7 @@ public class BodyPart : MonoBehaviour {
     public int maxHealth;
     public int currentHealth;
     public float healthCoefficient = 1.0f; // Default coefficient
-    public List<ActiveStatusEffect> ActiveLocalizedEffects { get; private set; }
+    public List<ActiveStatusEffect> ActiveLocalizedEffects;
     private Renderer bodyPartRenderer;
 
     public delegate void EffectAppliedHandler(StatusEffect effect);
