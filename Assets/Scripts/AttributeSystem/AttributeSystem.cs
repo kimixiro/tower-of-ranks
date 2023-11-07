@@ -3,18 +3,19 @@ using Random = UnityEngine.Random;
 
 public class AttributeSystem
 {
+    private EnvironmentalModifierCalculator environmentalCalculator = new EnvironmentalModifierCalculator();
+    private StatusEffectModifierCalculator statusEffectCalculator = new StatusEffectModifierCalculator();
+
     // Roll a d100 for various checks
     public int RollD100()
     {
         return Random.Range(1, 101);
     }
 
-    // Perform a combat check using attacker's Combat attribute against a difficulty rating
     public bool CombatCheck(CharacterAttributes attackerAttributes, int difficultyRating)
     {
         int attackRoll = RollD100();
 
-        // In Zweihander, rolling a '1' is always a critical success and '100' is always a critical failure
         if (attackRoll == 1)
         {
             return true; // Critical success
@@ -24,11 +25,14 @@ public class AttributeSystem
             return false; // Critical failure
         }
 
-        // The attacker's chance to hit is their Combat attribute minus the difficulty rating
-        // A successful hit occurs if the roll is equal to or less than this chance
         int chanceToHit = attackerAttributes.Combat - difficultyRating;
+
+        // Ensure there's always at least a small chance to hit, e.g., 5%
+        chanceToHit = Mathf.Max(chanceToHit, 5);
+
         return attackRoll <= chanceToHit;
     }
+
 
     // Calculate damage based on the Body attribute and weapon damage
     public int CalculateDamage(CharacterAttributes attributes)
@@ -75,47 +79,15 @@ public class AttributeSystem
     
     public int CalculateDifficultyRating(CharacterAttributes attackerAttributes, CharacterAttributes defenderAttributes, EnvironmentManager environmentFactors)
     {
-        int baseDifficulty = 50; // Base difficulty for an average task
-
-        // Adjust difficulty based on defender's Dexterity or other defensive attributes
-        int defenderModifier = defenderAttributes.Dexterity / 10; // Example modifier calculation
-
-        // Adjust difficulty based on environmental factors
-        int environmentalModifier = CalculateEnvironmentalModifier(environmentFactors);
-
-        // Adjust difficulty based on status effects
-        int statusEffectModifier = CalculateStatusEffectModifier(attackerAttributes);
+        int environmentalModifier = environmentalCalculator.CalculateModifier(environmentFactors);
+        int statusEffectModifier = statusEffectCalculator.CalculateModifier(attackerAttributes);
 
         // Final difficulty rating calculation
-        int difficultyRating = baseDifficulty + defenderModifier + environmentalModifier + statusEffectModifier;
+        int difficultyRating = environmentalModifier + statusEffectModifier;
 
         // Ensure difficulty rating is within a valid range if necessary
         difficultyRating = Mathf.Clamp(difficultyRating, 1, 100);
 
         return difficultyRating;
-    }
-    
-    private int CalculateEnvironmentalModifier(EnvironmentManager environmentFactors)
-    {
-        int modifier = 0;
-        // Add or subtract from the modifier based on environmental factors
-        // For example:
-        // if (environmentFactors.highGround) modifier -= 10;
-        // if (environmentFactors.poorVisibility) modifier += 15;
-        // ... and so on for other factors
-
-        return modifier;
-    }
-
-    // Calculate status effect modifiers
-    private int CalculateStatusEffectModifier(CharacterAttributes attributes)
-    {
-        int modifier = 0;
-        // Adjust the modifier based on status effects
-        // For example:
-        // if (attributes.isBlinded) modifier += 20;
-        // ... and so on for other status effects
-
-        return modifier;
     }
 }

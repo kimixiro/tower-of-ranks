@@ -55,7 +55,8 @@ public class CombatManager : MonoBehaviour {
 
     private void PerformAttack(Character attacker, Character defender) {
         // Determine if the attack hits using the attribute system
-        bool doesHit = attributeSystem.CombatCheck(attacker.attributes, 10);
+        var difficultyRating = attributeSystem.CalculateDifficultyRating(attacker.attributes,defender.attributes,environmentManager);
+        bool doesHit = attributeSystem.CombatCheck(attacker.attributes, difficultyRating);
 
         if (doesHit) {
             // Calculate damage based on attacker's attributes
