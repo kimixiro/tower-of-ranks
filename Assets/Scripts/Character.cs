@@ -12,6 +12,7 @@ public class Character : MonoBehaviour {
 
     public List<StatusEffect> availableEffects;
 
+    private AttributeSystem attributeSystem = new AttributeSystem();
     public delegate void GlobalEffectAppliedHandler(StatusEffect effect);
     public event GlobalEffectAppliedHandler OnGlobalEffectApplied;
     
@@ -21,19 +22,27 @@ public class Character : MonoBehaviour {
     }
 
     void Awake() {
-        BodyParts = new Dictionary<BodyPartType, BodyPart>();
         ActiveGlobalEffects = new List<ActiveStatusEffect>();
         InitializeBodyParts();
         UpdateTotalHealth();
     }
 
-    private void InitializeBodyParts() {
+    private void InitializeBodyParts()
+    {
+        BodyParts = new Dictionary<BodyPartType, BodyPart>();
         BodyPart[] parts = GetComponentsInChildren<BodyPart>();
-        foreach (var part in parts) {
-            int baseHealth = attributes.Body * 10; // Or any other logic you use to determine base health
-            part.InitializeHealth(baseHealth);
-            BodyParts.Add(part.type, part);
+
+        // First, add all body parts to the dictionary
+        foreach (var part in parts)
+        {
+            if (!BodyParts.ContainsKey(part.type))
+            {
+                BodyParts.Add(part.type, part);
+            }
         }
+
+        // Now that all body parts are in the dictionary, calculate their health
+        attributeSystem.CalculateBodyPartHealth(this);
     }
     
     private void OnValidate() {
@@ -64,8 +73,7 @@ public class Character : MonoBehaviour {
     }
 
     private void ModifyEffectBasedOnAttributes(StatusEffect effect) {
-        // Adjust the effect based on the character's attributes
-        // For example, a high Body attribute might reduce the duration of a poison effect
+       
     }
 
     public void TakeDamage(int damage, BodyPartType? bodyPartType = null) {

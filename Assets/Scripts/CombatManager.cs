@@ -7,7 +7,9 @@ public class CombatManager : MonoBehaviour {
     public Character player;
     public Character enemy;
     public StatusEffectManager statusEffectManager;
-
+    public EnvironmentManager environmentManager;
+    private AttributeSystem attributeSystem = new AttributeSystem();
+    
     private void Start() {
         StartCoroutine(CombatRoutine());
     }
@@ -49,31 +51,30 @@ public class CombatManager : MonoBehaviour {
     }
 
     private void PerformAttack(Character attacker, Character defender) {
-        // Determine damage
-        int damage = Random.Range(10, 20); // Example damage range
-        Debug.Log($"{attacker.name} is attacking {defender.name} with {damage} damage.");
+        // Determine if the attack hits using the attribute system
+        bool doesHit = attributeSystem.CombatCheck(attacker.attributes, 10);
 
-        // Choose to attack overall health or a specific body part
-        if (Random.value > 0.5f) {
-            // Attack a random body part
+        if (doesHit) {
+            // Calculate damage based on attacker's attributes
+            int damage = attributeSystem.CalculateDamage(attacker.attributes);
+
+            // Randomly select a body part to hit
             BodyPartType bodyPartType = (BodyPartType)Random.Range(0, System.Enum.GetValues(typeof(BodyPartType)).Length);
             BodyPart bodyPart = defender.BodyParts[bodyPartType];
+
+            // Apply damage to the specific body part
             defender.TakeDamage(damage, bodyPartType);
             Debug.Log($"{attacker.name} hit {defender.name}'s {bodyPartType} for {damage} damage.");
-            
+
             // Apply a random effect to the hit body part
             ApplyRandomEffect(attacker, defender, bodyPartType);
             StartCoroutine(bodyPart.Flash());
         } else {
-            // Attack overall health
-            defender.TakeDamage(damage);
-            Debug.Log($"{attacker.name} hit {defender.name} for {damage} damage.");
-            
-            // Apply a random global effect to the defender
-            ApplyRandomGlobalEffect(attacker, defender);
+            // Attack missed
+            Debug.Log($"{attacker.name} missed the attack on {defender.name}.");
         }
     }
-
+    
     private void ApplyRandomEffect(Character attacker, Character defender, BodyPartType bodyPartType) {
         // Select a random effect from the attacker's available effects
         StatusEffect randomEffect = attacker.availableEffects[Random.Range(0, attacker.availableEffects.Count)];
