@@ -16,6 +16,7 @@ public class CombatManager : MonoBehaviour {
 
     private IEnumerator CombatRoutine() {
         while (!player.IsDead && !enemy.IsDead) {
+            environmentManager.UpdateEnvironment();
             // Player's turn
             yield return StartCoroutine(TurnRoutine(player, enemy));
 

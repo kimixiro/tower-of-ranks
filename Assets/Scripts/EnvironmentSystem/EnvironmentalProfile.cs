@@ -10,14 +10,6 @@ public class EnvironmentalProfile
     public EnvironmentType environmentType;
     public LightingCondition lightingCondition;
 
-    // Constructor to set default environment
-    public EnvironmentalProfile()
-    {
-        weatherProfile = new WeatherProfile();
-        environmentType = EnvironmentType.Surface;
-        lightingCondition = new LightingCondition(Lighting.Bright, true);
-    }
-
     // Method to update lighting based on environment and time of day
     public void UpdateLighting(TimeOfDay timeOfDay)
     {

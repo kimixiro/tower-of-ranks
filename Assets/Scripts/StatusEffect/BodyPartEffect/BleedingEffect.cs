@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewBleedingEffect", menuName = "Status Effect/Bleeding")]
+[CreateAssetMenu(fileName = "NewBleedingEffect", menuName = "Status Effect/BodyPart/Bleeding")]
 public class BleedingEffect : StatusEffect
 {
     public int damagePerTurn;

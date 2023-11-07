@@ -179,7 +179,7 @@ Transform:
   - {fileID: 1681966948}
   - {fileID: 1813980070}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534644445
 GameObject:
@@ -240,7 +240,7 @@ Transform:
   - {fileID: 839313457}
   - {fileID: 1720522513}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628089023
 GameObject:
@@ -289,6 +289,7 @@ MonoBehaviour:
   player: {fileID: 534644446}
   enemy: {fileID: 252590878}
   statusEffectManager: {fileID: 1533812026}
+  environmentManager: {fileID: 0}
 --- !u!1 &648265678
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +342,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &648265681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -464,6 +466,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1.5
+  ActiveLocalizedEffects: []
 --- !u!65 &672668064
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -681,6 +684,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 0.75
+  ActiveLocalizedEffects: []
 --- !u!65 &760882121
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -804,6 +808,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &803919905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -927,6 +932,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1.25
+  ActiveLocalizedEffects: []
 --- !u!65 &839313459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1142,6 +1148,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &989713488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1213,6 +1220,61 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989713485}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1203494189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1203494191}
+  - component: {fileID: 1203494190}
+  m_Layer: 0
+  m_Name: EnvironmentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1203494190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203494189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4666c8c3432fdd4785a4af026ee63d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentProfile:
+    weatherProfile:
+      timeOfDay: 0
+      precipitation: 0
+      wind: 0
+    environmentType: 0
+    lightingCondition:
+      lighting: 0
+      isNaturalLight: 1
+  statusEffectManager: {fileID: 0}
+  effectsToApply: []
+--- !u!4 &1203494191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203494189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227141337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1327,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &1227141340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1388,6 +1451,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &1371719659
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1511,6 +1575,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &1491367857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1678,6 +1743,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &1681966950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1801,6 +1867,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1.25
+  ActiveLocalizedEffects: []
 --- !u!65 &1720522515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1924,6 +1991,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   healthCoefficient: 1
+  ActiveLocalizedEffects: []
 --- !u!65 &1813980072
 BoxCollider:
   m_ObjectHideFlags: 0

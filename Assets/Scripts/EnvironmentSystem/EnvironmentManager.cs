@@ -18,25 +18,21 @@ public class EnvironmentManager : MonoBehaviour
     // Initialize with default values or inject dependencies as needed
     void Start()
     {
-        currentProfile = new EnvironmentalProfile(); // Set the initial environmental profile
-        conditionsManager = new EnvironmentConditionsManager();
         charactersInEnvironment = new List<Character>(); // Populate this list with characters in the environment
     }
 
     // Call this method every turn to update the environment and apply effects
-    public void UpdateEnvironment()
-    {
+    public void UpdateEnvironment() {
         // Get the effects to apply from the conditions manager
-         effectsToApply = conditionsManager.CheckEnvironmentalEffects(currentProfile);
+        effectsToApply = conditionsManager.CheckEnvironmentalEffects(currentProfile);
 
         // Logic to update timers and apply effects
-        foreach (var envEffect in effectsToApply)
-        {
-            foreach (var character in charactersInEnvironment)
-            {
-                // Decrement the timer and apply the effect if the timer reaches 0
-                // This assumes that you have a method to apply the status effect to the character
-                statusEffectManager.ApplyEffect(character, envEffect.effect);
+        foreach (var effectDefinition in effectsToApply) {
+            foreach (var character in charactersInEnvironment) {
+                // Create a new instance of the effect
+
+                // Apply the new instance of the effect to the character
+                statusEffectManager.ApplyEffect(character, effectDefinition.effect);
             }
         }
     }

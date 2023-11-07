@@ -15,6 +15,6 @@ MonoBehaviour:
   effectName: Bleeding
   description: 
   icon: {fileID: 0}
-  duration: -10
+  duration: 5
   isGlobal: 0
   damagePerTurn: 1
