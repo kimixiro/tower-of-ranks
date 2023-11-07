@@ -9,7 +9,6 @@ public class WeatherProfile
     public TimeOfDay timeOfDay;
     public Precipitation precipitation;
     public Wind wind;
-    // Add more settings as needed
 
     // Constructor to set default weather
     public WeatherProfile()

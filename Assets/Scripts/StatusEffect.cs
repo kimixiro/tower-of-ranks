@@ -5,7 +5,7 @@ public abstract class StatusEffect : ScriptableObject
     public string effectName;
     public string description;
     public Sprite icon;
-    public float duration; // Duration in turns or seconds
+    public float duration; // Duration in turns
     public bool isGlobal; // Indicates if the effect is global or local
 
     // Apply the effect to a character or body part
