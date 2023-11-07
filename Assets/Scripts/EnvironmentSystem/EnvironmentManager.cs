@@ -11,6 +11,7 @@ public class EnvironmentManager : MonoBehaviour
 {
     public EnvironmentalProfile currentProfile;
     public StatusEffectManager statusEffectManager;
+    public EnvironmentalEffects environmentalEffects;
     public List<EnvironmentalEffect> effectsToApply = new List<EnvironmentalEffect>();
     private EnvironmentConditionsManager conditionsManager;
     private List<Character> charactersInEnvironment;
@@ -19,6 +20,7 @@ public class EnvironmentManager : MonoBehaviour
     void Start()
     {
         charactersInEnvironment = new List<Character>(); // Populate this list with characters in the environment
+        conditionsManager = new EnvironmentConditionsManager(environmentalEffects);
     }
 
     // Call this method every turn to update the environment and apply effects

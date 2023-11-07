@@ -8,7 +8,7 @@ public class Character : MonoBehaviour {
     public Dictionary<BodyPartType, BodyPart> BodyParts;
     [SerializeField] private int totalHealth;
     public bool IsDead { get; private set; } = false;
-    public List<ActiveStatusEffect> ActiveGlobalEffects { get; private set; }
+    public List<ActiveStatusEffect> ActiveGlobalEffects;
 
     public List<StatusEffect> availableEffects;
 
