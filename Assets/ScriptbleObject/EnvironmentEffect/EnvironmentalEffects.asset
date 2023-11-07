@@ -13,18 +13,27 @@ MonoBehaviour:
   m_Name: EnvironmentalEffects
   m_EditorClassIdentifier: 
   effectsList:
-  - name: 
-    effect: {fileID: 11400000, guid: b4badbb24ff2b644b9553974ae7b4453, type: 2}
-    turnsToApply: 0
-  - name: 
-    effect: {fileID: 0}
-    turnsToApply: 0
-  - name: 
-    effect: {fileID: 0}
-    turnsToApply: 0
-  - name: 
-    effect: {fileID: 0}
-    turnsToApply: 0
-  - name: 
-    effect: {fileID: 0}
-    turnsToApply: 0
+  - name: Dehydration
+    effect: {fileID: 11400000, guid: c0a4a13b8b84bed49b0caa32a24bd797, type: 2}
+    turnsToApply: 2
+  - name: Frostbite
+    effect: {fileID: 11400000, guid: 8c964409db735704792d8c3d82d92c8a, type: 2}
+    turnsToApply: 3
+  - name: Heatstroke
+    effect: {fileID: 11400000, guid: f04004057fb01ef4b99d6fb233457c17, type: 2}
+    turnsToApply: 4
+  - name: Hypothermia
+    effect: {fileID: 11400000, guid: 79f731990305f4a46a30eece49abac1f, type: 2}
+    turnsToApply: 5
+  - name: Snow Blindness
+    effect: {fileID: 11400000, guid: b9e16e32945958644905b3a60a932b5b, type: 2}
+    turnsToApply: 6
+  - name: Soaked
+    effect: {fileID: 11400000, guid: 7b9b542d5f9a0c24db7393559defa8fe, type: 2}
+    turnsToApply: 7
+  - name: Sunburn
+    effect: {fileID: 11400000, guid: 9240e457883ee9d4db7563dcfc70a83f, type: 2}
+    turnsToApply: 8
+  - name: Windburn
+    effect: {fileID: 11400000, guid: 1e599d15d6675e847ae74583d36971f6, type: 2}
+    turnsToApply: 9

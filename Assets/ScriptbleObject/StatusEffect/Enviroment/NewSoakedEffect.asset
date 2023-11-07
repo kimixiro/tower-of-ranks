@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82690c82da15b748acf080dc59a9dfd, type: 3}
   m_Name: NewSoakedEffect
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: Soaked
   description: 
   icon: {fileID: 0}
-  duration: 0
-  isGlobal: 0
+  duration: 10
+  isGlobal: 1
   damagePerTurn: 0

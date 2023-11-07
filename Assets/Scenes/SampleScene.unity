@@ -158,6 +158,7 @@ MonoBehaviour:
     Willpower: 10
     Communication: 10
   totalHealth: 0
+  ActiveGlobalEffects: []
   availableEffects:
   - {fileID: 11400000, guid: b4badbb24ff2b644b9553974ae7b4453, type: 2}
 --- !u!4 &252590879
@@ -219,6 +220,7 @@ MonoBehaviour:
     Willpower: 10
     Communication: 10
   totalHealth: 0
+  ActiveGlobalEffects: []
   availableEffects:
   - {fileID: 11400000, guid: b4badbb24ff2b644b9553974ae7b4453, type: 2}
 --- !u!4 &534644447
@@ -289,7 +291,7 @@ MonoBehaviour:
   player: {fileID: 534644446}
   enemy: {fileID: 252590878}
   statusEffectManager: {fileID: 1533812026}
-  environmentManager: {fileID: 0}
+  environmentManager: {fileID: 1203494190}
 --- !u!1 &648265678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1149,7 @@ MonoBehaviour:
   isVital: 1
   maxHealth: 0
   currentHealth: 0
-  healthCoefficient: 1
+  healthCoefficient: 1.5
   ActiveLocalizedEffects: []
 --- !u!65 &989713488
 BoxCollider:
@@ -1253,12 +1255,13 @@ MonoBehaviour:
     weatherProfile:
       timeOfDay: 0
       precipitation: 0
-      wind: 0
+      wind: 2
     environmentType: 0
     lightingCondition:
       lighting: 0
       isNaturalLight: 1
-  statusEffectManager: {fileID: 0}
+  statusEffectManager: {fileID: 1533812026}
+  environmentalEffects: {fileID: 11400000, guid: 33a9aaf7c335d664c9bd77bae4a2f3b4, type: 2}
   effectsToApply: []
 --- !u!4 &1203494191
 Transform:
@@ -1574,7 +1577,7 @@ MonoBehaviour:
   isVital: 1
   maxHealth: 0
   currentHealth: 0
-  healthCoefficient: 1
+  healthCoefficient: 0.75
   ActiveLocalizedEffects: []
 --- !u!65 &1491367857
 BoxCollider:
@@ -1742,7 +1745,7 @@ MonoBehaviour:
   isVital: 0
   maxHealth: 0
   currentHealth: 0
-  healthCoefficient: 1
+  healthCoefficient: 1.25
   ActiveLocalizedEffects: []
 --- !u!65 &1681966950
 BoxCollider:
@@ -1990,7 +1993,7 @@ MonoBehaviour:
   isVital: 0
   maxHealth: 0
   currentHealth: 0
-  healthCoefficient: 1
+  healthCoefficient: 1.25
   ActiveLocalizedEffects: []
 --- !u!65 &1813980072
 BoxCollider:

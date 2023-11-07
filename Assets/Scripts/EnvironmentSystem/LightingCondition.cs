@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
-public struct LightingCondition
+public struct LightingCondition : IEquatable<LightingCondition>
 {
     public Lighting lighting;
     public bool isNaturalLight;
@@ -13,5 +10,34 @@ public struct LightingCondition
     {
         this.lighting = lighting;
         this.isNaturalLight = isNaturalLight;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is LightingCondition)
+        {
+            return Equals((LightingCondition)obj);
+        }
+        return false;
+    }
+
+    public bool Equals(LightingCondition other)
+    {
+        return lighting == other.lighting && isNaturalLight == other.isNaturalLight;
+    }
+
+    public override int GetHashCode()
+    {
+        return lighting.GetHashCode() ^ isNaturalLight.GetHashCode();
+    }
+
+    public static bool operator ==(LightingCondition left, LightingCondition right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(LightingCondition left, LightingCondition right)
+    {
+        return !(left == right);
     }
 }

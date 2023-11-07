@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811c70073b44cdf429921d06ca4059e6, type: 3}
   m_Name: NewWindburnEffect
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: Windburn
   description: 
   icon: {fileID: 0}
-  duration: 0
-  isGlobal: 0
+  duration: 10
+  isGlobal: 1
   damagePerTurn: 0

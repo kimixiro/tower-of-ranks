@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61402aefe5b32044b81d5a80eeec975, type: 3}
   m_Name: NewSnowBlindnessEffect
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: SnowBlindness
   description: 
   icon: {fileID: 0}
-  duration: 0
-  isGlobal: 0
+  duration: 10
+  isGlobal: 1
   damagePerTurn: 0

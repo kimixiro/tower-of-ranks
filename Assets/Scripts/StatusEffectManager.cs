@@ -83,4 +83,9 @@ public class StatusEffectManager : MonoBehaviour
             }
         }
     }
+    
+    public bool HasEffect(Character character, StatusEffect effect)
+    {
+        return character.ActiveGlobalEffects.Any(ae => ae.effect == effect);
+    }
 }

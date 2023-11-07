@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517de4b0f27e09349a94ec14928f28d2, type: 3}
   m_Name: NewDehydrationEffect
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: Dehydration
   description: 
   icon: {fileID: 0}
-  duration: 0
-  isGlobal: 0
+  duration: 10
+  isGlobal: 1
   damagePerTurn: 0

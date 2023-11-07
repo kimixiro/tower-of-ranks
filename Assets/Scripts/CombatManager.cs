@@ -11,6 +11,8 @@ public class CombatManager : MonoBehaviour {
     private AttributeSystem attributeSystem = new AttributeSystem();
     
     private void Start() {
+        environmentManager.AddCharacterToEnvironment(player);
+        environmentManager.AddCharacterToEnvironment(enemy);
         StartCoroutine(CombatRoutine());
     }
 

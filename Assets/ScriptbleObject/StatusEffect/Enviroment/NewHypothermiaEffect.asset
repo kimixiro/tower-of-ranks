@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83240e27344c715498e10b542a945f85, type: 3}
   m_Name: NewHypothermiaEffect
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: Hypothermia
   description: 
   icon: {fileID: 0}
-  duration: 0
-  isGlobal: 0
+  duration: 10
+  isGlobal: 1
   damagePerTurn: 0
